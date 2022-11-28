@@ -112,7 +112,7 @@ const LayoutModule: React.FC<Props> = ({children}) => {
         Bill is a cat.
       </div>
     </Content>
-    <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+    <Footer style={{ textAlign: 'center' }}>哈尔滨智慧地铁智能运维管理系统 ©2022 Created by CYT</Footer>
   </Layout>
 </Layout>
 )
