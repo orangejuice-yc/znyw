@@ -68,7 +68,7 @@ const items: MenuItem[] = [
   getItem('分析中心', '3', <FileOutlined />,[
     getItem('检修成本分析', '3-1'), 
     getItem('检修绩效分析', '3-2'),
-    getItem('检修绩效分析', '3-3'),
+    getItem('检修分析', '3-3'),
   ])
 ];
 interface Props {
