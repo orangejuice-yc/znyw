@@ -1,3 +1,3 @@
-export default function testReducer (state:number = 0){
+export default function testReducer (state:number = 1){
   return state;
 }

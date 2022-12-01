@@ -5,7 +5,7 @@ import Layout from '../Layout'
 const Reliability = () => {
   const state = useSelector(state => state)
   return (
-    <Layout>Reliability {JSON.stringify(state)}</Layout>
+    <Layout>Reliability4234234234234 {JSON.stringify(state)}</Layout>
   )
 }
 

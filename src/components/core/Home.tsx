@@ -5,7 +5,7 @@ import Layout from './Layout'
 const Home = () => {
   const state = useSelector(state => state)
   return (
-    <Layout>Home {JSON.stringify(state)}</Layout>
+    <Layout>Home 342423423423{JSON.stringify(state)}</Layout>
   )
 }
 

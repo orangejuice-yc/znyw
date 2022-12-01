@@ -1,5 +1,5 @@
 import { createBrowserHistory } from 'history'
-import { createStore,applyMiddleware,compose } from 'redux'
+import { legacy_createStore as createStore ,applyMiddleware,compose } from 'redux'
 import { routerMiddleware } from 'connected-react-router'
 import createRootReducer from './reducers/index'
 

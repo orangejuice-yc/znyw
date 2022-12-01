@@ -23,11 +23,9 @@ const root = ReactDOM.createRoot(
 //   </React.StrictMode>
 // );
 root.render(
-  <React.StrictMode>
     <Provider store={store}>
       <ConnectedRouter history={history}>
         <Routes />
       </ConnectedRouter>
     </Provider>
-  </React.StrictMode>
 );

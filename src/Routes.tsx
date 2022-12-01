@@ -1,25 +1,29 @@
-import React from 'react';
-import { createBrowserRouter,RouterProvider } from 'react-router-dom';
-import Home from './components/core/Home';
-import Index from './components/core/Index';
-import Reliability from './components/core/module/Reliability';
-import ReliabilityTrends from './components/core/module/ReliabilityTrends';
-const router = createBrowserRouter([
+import React, { lazy,ReactNode } from 'react';
+import { createBrowserRouter,RouterProvider,createHashRouter } from 'react-router-dom';
+const Home = lazy(() => import('./components/core/Home'))
+// import Index from './components/core/Index';
+const Reliability = lazy(() => import('./components/core/module/Reliability'))
+const ReliabilityTrends  = lazy(() => import('./components/core/module/ReliabilityTrends'))
+
+const lazyLoad = (children:ReactNode): ReactNode => {
+  return <div>{children}</div>
+}
+const router = createHashRouter([
   {
     path: "/",
-    element: <Home />,
+    element: lazyLoad(<Home />),
   },
-  {
-    path: "/index",
-    element: <Index />,
-  },
+  // {
+  //   path: "/index",
+  //   element: <Index />,
+  // },
   {
     path:"/reliability",
-    element: <Reliability />
+    element: lazyLoad(<Reliability />)
   },
   {
-    path:"/reliabilitytrends",
-    element: <ReliabilityTrends />
+    path:"/reliability/trend",
+    element: lazyLoad(<ReliabilityTrends />)
   }
 ]);
 
@@ -30,3 +34,6 @@ const Routes = () => {
 }
 
 export default Routes
+
+
+
