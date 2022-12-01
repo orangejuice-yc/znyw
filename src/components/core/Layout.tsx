@@ -1,6 +1,7 @@
 import { Breadcrumb, Layout, Menu } from 'antd';
 import React, { useState } from 'react';
 import Navigation from "./Navigation"
+import {Outlet} from 'react-router-dom'
 // import React from 'react';
 // import 'antd/dist/antd.min.css'
 
@@ -34,14 +35,15 @@ interface Props {
 // }
 // callBackLogin()
 
-const LayoutModule: React.FC<Props> = ({children}) => {
+const LayoutModule= () => {
   return (
   <Layout style={{ minHeight: '100vh' }}>
     <Navigation />
   <Layout className="site-layout">
     <Content style={{ margin: '0 16px' }}>
       <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-        {children}
+        {/* {children} */}
+        <Outlet />
       </div>
     </Content>
     <Footer style={{ textAlign: 'center' }}>哈尔滨地铁智能运维系统 ©2022 Created by CYT</Footer>

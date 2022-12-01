@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
+import { HashRouter as Router } from "react-router-dom";
 import {ConnectedRouter} from 'connected-react-router'
 import Routes from './Routes';
 import { API } from './config'
@@ -25,7 +26,9 @@ const root = ReactDOM.createRoot(
 root.render(
     <Provider store={store}>
       <ConnectedRouter history={history}>
-        <Routes />
+        <Router>
+          <Routes />
+        </Router>
       </ConnectedRouter>
     </Provider>
 );

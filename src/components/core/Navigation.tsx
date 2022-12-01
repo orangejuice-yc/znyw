@@ -4,7 +4,7 @@ import { Breadcrumb, Layout, Menu } from 'antd';
 import React, { useState,useEffect } from 'react';
 import { useSelector } from "react-redux"
 import { RouterState } from "connected-react-router"
-import { useLocation,Link } from "react-router-dom"
+import { useLocation,Link, matchRoutes } from "react-router-dom"
 import {
   DesktopOutlined,
   FileOutlined,
@@ -13,6 +13,7 @@ import {
   UserOutlined,
 } from '@ant-design/icons';
 import { AppState } from "../../store/reducers/index"
+import router from '../../router'
 // import React from 'react';
 // import 'antd/dist/antd.min.css'
 
@@ -46,16 +47,36 @@ function getItem(
   } as MenuItem;
 }
 
-const rootSubmenuKeys = ['0','1','1-1','1-1-1','1-1-2']
 const Navigation = () => {
+  const [defaultSelectedKeys,setDefaultSelectedKeys] = useState<string[]>([])
+  const [defaultOpenKeys,setDefaultOpenKeys] = useState<string[]>([])
   const [collapsed, setCollapsed] = useState(false);
+  const [isInit,setIsInit] = useState(false);
   const location = useLocation();
-  const {pathname} = location;
+
   useEffect(()=>{
-    // console.log(pathname)
-  }, [location])
-  const KEYPATH = localStorage.getItem('KEYPATH')
-  const [openKeys, setOpenKeys] = useState(KEYPATH?.split(','));
+    console.log(location)
+    const routes = matchRoutes(router, location.pathname);
+    let pathArr: string[] = [];
+    if(routes !== null){
+      for(let route of routes){
+        
+        let path = route.route.path;
+        if(path){
+          pathArr.push(path)
+        }
+        console.log(pathArr)
+      }
+    }
+      setDefaultSelectedKeys(pathArr);
+      setDefaultOpenKeys(pathArr);
+      setIsInit(true)
+  }, [location.pathname])
+  if(!isInit){
+    return null
+  }
+  // const KEYPATH = localStorage.getItem('KEYPATH')
+  // const [openKeys, setOpenKeys] = useState(KEYPATH?.split(','));
   // const router = useSelector<AppState, RouterState>(state => state.router)
   // const pathname = router.location
   // console.log(pathname)
@@ -73,26 +94,26 @@ const Navigation = () => {
   //     setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
   //   }
   // };
-  const onClick: MenuProps['onClick'] = e => {
-    console.log('click ', e.keyPath);
-    localStorage.setItem('KEYPATH',e.keyPath.join(','))
-    // setOpenKeys(e.keyPath);
-    // setCurrent(e.keyPath);
+  // const onClick: MenuProps['onClick'] = e => {
+  //   console.log('click ', e.keyPath);
+  //   localStorage.setItem('KEYPATH',e.keyPath.join(','))
+  //   // setOpenKeys(e.keyPath);
+  //   // setCurrent(e.keyPath);
     
-    // const latestOpenKey = e.keyPath.find(key => openKeys.indexOf(key) === -1);
-    // if (rootSubmenuKeys.indexOf(latestOpenKey!) === -1) {
-    //   setOpenKeys(e.keyPath);
-    // } else {
-    //   setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
-    // }
-    console.log(openKeys)
-  };
+  //   // const latestOpenKey = e.keyPath.find(key => openKeys.indexOf(key) === -1);
+  //   // if (rootSubmenuKeys.indexOf(latestOpenKey!) === -1) {
+  //   //   setOpenKeys(e.keyPath);
+  //   // } else {
+  //   //   setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
+  //   // }
+  //   console.log(openKeys)
+  // };
   const items: MenuItem[] = [
-    getItem(<Link to="/">首页</Link>, '0',<UserOutlined />),
-    getItem('监控中心', '1', <UserOutlined />, [
-      getItem('设备可靠性', '1-1','',[
-        getItem(<Link to="/reliability">线网设备可靠性平均指标</Link>, '1-1-1'),
-        getItem(<Link to="/reliability/trend">线网设备可靠性平均指标趋势</Link>, '1-1-2'),
+    getItem(<Link to="/">首页</Link>, '/',<UserOutlined />),
+    getItem('监控中心', '/watch', <UserOutlined />, [
+      getItem('设备可靠性', '/watch/reliability','',[
+        getItem(<Link to="/watch/reliability/data">线网设备可靠性平均指标</Link>, '/watch/reliability/data'),
+        getItem(<Link to="/watch/reliability/trend">线网设备可靠性平均指标趋势</Link>, '/watch/reliability/trend'),
         getItem('线网关键设备可靠性指标', '1-1-3')
       ]),
       getItem('设备可用性', '1-2','',[
@@ -140,9 +161,10 @@ const Navigation = () => {
       <Menu 
         theme="dark"  
         mode="inline" 
-        defaultSelectedKeys={openKeys}
-        defaultOpenKeys={openKeys} 
-        onClick={onClick}
+        // defaultSelectedKeys={['0']}
+        defaultSelectedKeys={defaultSelectedKeys}
+        defaultOpenKeys={defaultOpenKeys} 
+        // onClick={onClick}
         items={items} />
     </Sider>
   )
