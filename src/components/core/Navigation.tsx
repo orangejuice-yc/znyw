@@ -110,10 +110,10 @@ const Navigation = () => {
   // };
   const items: MenuItem[] = [
     getItem(<Link to="/">首页</Link>, '/',<UserOutlined />),
-    getItem('监控中心', '/watch', <UserOutlined />, [
-      getItem('设备可靠性', '/watch/reliability','',[
-        getItem(<Link to="/watch/reliability/data">线网设备可靠性平均指标</Link>, '/watch/reliability/data'),
-        getItem(<Link to="/watch/reliability/trend">线网设备可靠性平均指标趋势</Link>, '/watch/reliability/trend'),
+    getItem('监控中心', '/monitor', <UserOutlined />, [
+      getItem('设备可靠性', '/monitor/reliability','',[
+        getItem(<Link to="/monitor/reliability/data">线网设备可靠性平均指标</Link>, '/monitor/reliability/data'),
+        getItem(<Link to="/monitor/reliability/trend">线网设备可靠性平均指标趋势</Link>, '/monitor/reliability/trend'),
         getItem('线网关键设备可靠性指标', '1-1-3')
       ]),
       getItem('设备可用性', '1-2','',[

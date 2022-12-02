@@ -41,12 +41,12 @@ const LayoutModule= () => {
     <Navigation />
   <Layout className="site-layout">
     <Content style={{ margin: '0 16px' }}>
-      <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+      <div className="site-layout-background" style={{ padding: 20 }}>
         {/* {children} */}
         <Outlet />
       </div>
     </Content>
-    <Footer style={{ textAlign: 'center' }}>哈尔滨地铁智能运维系统 ©2022 Created by CYT</Footer>
+    {/* <Footer style={{ textAlign: 'center' }}>哈尔滨地铁智能运维系统 ©2022 Created by CYT</Footer> */}
   </Layout>
 </Layout>
 )

@@ -60,18 +60,18 @@ const router : RouteObject[] = [
     ]
   },
   {
-    path:"/watch",
+    path:"/monitor",
     element: <Layout />,
     children:[
       {
-        path: "/watch/reliability",
+        path: "/monitor/reliability",
         children:[
           {
-            path: "/watch/reliability/data",
+            path: "/monitor/reliability/data",
             element: lazyLoad(<Reliability />)
           }, 
           {
-            path:"/watch/reliability/trend",
+            path:"/monitor/reliability/trend",
             element: lazyLoad(<ReliabilityTrends />)
           }
         ]

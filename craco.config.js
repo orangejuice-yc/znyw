@@ -37,7 +37,7 @@ module.exports = {
             // modifyVars: { '@primary-color': '#1DA57A' },
             modifyVars: getThemeVariables({
                 dark: true, // 开启暗黑模式
-                compact: true, // 开启紧凑模式
+                // compact: true, // 开启紧凑模式
             }),
             javascriptEnabled: true,
           },
