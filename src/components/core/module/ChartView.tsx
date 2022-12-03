@@ -61,14 +61,13 @@ useEffect(() => {
     rotate: 90,
     align: 'left',
     verticalAlign: 'middle',
-    position: 'top',
+    position: 'insideBottom',
     distance: 15,
     onChange: function () {
       const labelOption: BarLabelOption = {
         rotate: app.config.rotate as BarLabelOption['rotate'],
         align: app.config.align as BarLabelOption['align'],
-        verticalAlign: app.config
-          .verticalAlign as BarLabelOption['verticalAlign'],
+        verticalAlign: app.config.verticalAlign as BarLabelOption['verticalAlign'],
         position: app.config.position as BarLabelOption['position'],
         distance: app.config.distance as BarLabelOption['distance']
       };
@@ -100,7 +99,7 @@ useEffect(() => {
     align: app.config.align as BarLabelOption['align'],
     verticalAlign: app.config.verticalAlign as BarLabelOption['verticalAlign'],
     rotate: app.config.rotate as BarLabelOption['rotate'],
-    formatter: '{c}  {name|{a}}',
+    formatter: '{c}%  {name|{a}}',
     fontSize: 16,
     rich: {
       name: {}
@@ -108,11 +107,12 @@ useEffect(() => {
   };
   
   option = {
+    backgroundColor:'#111',
     tooltip: {
       trigger: 'axis',
       axisPointer: {
         type: 'shadow'
-      }
+      },
     },
     legend: {
       data: ['车站1', '车站2']
@@ -120,26 +120,29 @@ useEffect(() => {
     // toolbox: {
     //   show: true,
     //   orient: 'vertical',
-    //   left: 'right',
+    //   left: 'left',
     //   top: 'center',
-    //   // feature: {
-    //   //   mark: { show: true },
-    //   //   dataView: { show: true, readOnly: false },
-    //   //   magicType: { show: true, type: ['line', 'bar', 'stack'] },
-    //   //   restore: { show: true },
-    //   //   saveAsImage: { show: true }
-    //   // }
+    //   feature: {
+    //     mark: { show: true },
+    //     dataView: { show: true, readOnly: false },
+    //     magicType: { show: true, type: ['line', 'bar', 'stack'] },
+    //     restore: { show: true },
+    //     saveAsImage: { show: true }
+    //   }
     // },
     xAxis: [
       {
         type: 'category',
         axisTick: { show: true },
-        data: ['设备1', '设备2', '设备3', '设备4', '设备5']
+        data: ['设备1', '设备2', '设备3', '设备4', '设备5'],
       }
     ],
     yAxis: [
       {
-        type: 'value'
+        type: 'value',
+        axisLabel:{
+          formatter: '{value} %'
+        }
       }
     ],
     series: [
@@ -148,6 +151,7 @@ useEffect(() => {
         type: 'bar',
         barGap: 0,
         label: labelOption,
+        showBackground: true,
         emphasis: {
           focus: 'series'
         },
@@ -157,6 +161,7 @@ useEffect(() => {
         name: '车站2',
         type: 'bar',
         label: labelOption,
+        showBackground: true,
         emphasis: {
           focus: 'series'
         },
