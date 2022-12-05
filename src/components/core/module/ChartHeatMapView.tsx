@@ -10,16 +10,6 @@ interface Props {
 }
 
 const ChartModule: FC<Props> = ({ dimension,mode,time,checkedKeys }) => {
-  // const getData = () => {
-  //   let data = [];
-  //   for(let i=0;i<5;i++){
-  //     data.push((Math.random()*(90)+10).toFixed(2))
-  //   }
-  //   return data
-  // }
-
-  // console.log(dimension,mode,time,checkedKeys)
-
   useEffect(() => {
     type EChartsOption = echarts.EChartsOption;
 
