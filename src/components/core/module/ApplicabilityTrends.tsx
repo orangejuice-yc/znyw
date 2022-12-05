@@ -1,22 +1,27 @@
-import { Layout,Segmented,Tree,Table } from 'antd';
+import { Layout,Segmented,Tree,Row,Col,Statistic ,Card} from 'antd';
+import { ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons';
 import React, { FC,useState } from 'react';
 import type { TreeProps } from 'antd/es/tree';
 import { useSelector } from 'react-redux'
 import MonitorLayout from './MonitorLayout'
 import MonitorCharts from './MonitorCharts';
 import MonitorSider from './MonitorSider';
-import MonitorTable from './MonitorTable';
-import ChartBar from './ChartBarView'
+import MonitorCompare from './MonitorCompare';
+import ChartHeatMap from './ChartHeatMapView'
+import ChartLine from './ChartLineView'
+import StatisticView from './StatisticView';
 import {columns,data,treeDataLine,treeDataState} from '../../../mock'
 
 
-const Reliability = () => {
+const ApplicabilityTrends = () => {
   const state = useSelector(state => state)
   const [value, setValue] = useState<string | number>('线路');
-  const [mode, setMode] = useState<string | number>('设备完好率');
-  const [time, setTime] = useState<string | number>('本年');
+  const [mode, setMode] = useState<string | number>('责任事故次数');
+  const [time, setTime] = useState<string | number>('周统计');
   const [checkedKeys, setCheckedKeys] = useState<string[]>(['一号线','二号线']);
-  const [xAixsData] = useState<string[]>(['设备1', '设备2', '设备3', '设备4', '设备5']);
+  const [chartType, setChartType] = useState<string | number>('热力图');
+  const [lineTitle] = useState<string>('设备可用性趋势曲线图');
+
   const onCheck = (checkedKeysValue : any) => {
     console.log('onCheck', checkedKeysValue);
     setCheckedKeys(checkedKeysValue);
@@ -43,16 +48,19 @@ const Reliability = () => {
       </MonitorSider>
       <Layout style={{overflow:'hidden'}}>
         <MonitorCharts>
-          <Segmented block options={['设备完好率', '设备可靠度', '设备停机率']} value={mode} onChange={setMode}/>
-          <Segmented size="small" options={['本年', '本月', '本周']} value={time} onChange={setTime} style={{textAlign:'right',marginTop:'10px'}}/>
-          <ChartBar xAixsData={xAixsData} dimension={value} mode={mode} time={time} checkedKeys={checkedKeys}/>
+          {/* <Segmented block options={['责任事故次数', '信号系统故障率', '车辆系统故障率']} value={mode} onChange={setMode}/> */}
+          {/* <Segmented options={['热力图', '折线图']} value={chartType} onChange={setChartType}/> */}
+          <Segmented size="small" options={['周统计', '月统计', '年统计']} value={time} onChange={setTime} style={{textAlign:'right',marginTop:'10px'}}/>
+          {/* {chartType == '热力图'  && <ChartHeatMap dimension={value} mode={mode} time={time} checkedKeys={checkedKeys}/>} */}
+          <ChartLine lineTitle={lineTitle} dimension={value} mode={mode} time={time} checkedKeys={checkedKeys}/>
         </MonitorCharts>
-        <MonitorTable>
-          <Table columns={columns} dataSource={data} scroll={{ x: 1500, y: 300 }} />
-        </MonitorTable>
+        <MonitorCompare>
+          <StatisticView dimension={value} mode={mode} time={time} checkedKeys={checkedKeys}/>
+        </MonitorCompare>
+        
       </Layout> 
     </MonitorLayout>
   )
 }
 
-export default Reliability
+export default ApplicabilityTrends

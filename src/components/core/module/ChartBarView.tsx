@@ -3,14 +3,15 @@ import React, { FC,useEffect } from 'react';
 import './module.less'
 
 interface Props {
+  xAixsData?:string[],
   dimension?: string | number,
   mode?: string | number,
   time?: string | number,
   checkedKeys?:string[]
 }
 
-const ChartModule: FC<Props> = ({ dimension,mode,time,checkedKeys }) => {
-  const getData = () => {
+const ChartModule: FC<Props> = ({ xAixsData,dimension,mode,time,checkedKeys }) => {
+  const mockData = () => {
     let data = [];
     for(let i=0;i<5;i++){
       data.push((Math.random()*(90)+10).toFixed(2))
@@ -138,7 +139,7 @@ const ChartModule: FC<Props> = ({ dimension,mode,time,checkedKeys }) => {
           emphasis: {
             focus: 'series'
           },
-          data: getData()
+          data: mockData()
         }
         series.push(item)
      }
@@ -161,7 +162,7 @@ const ChartModule: FC<Props> = ({ dimension,mode,time,checkedKeys }) => {
       {
         type: 'category',
         axisTick: { show: true },
-        data: ['设备1', '设备2', '设备3', '设备4', '设备5'],
+        data: xAixsData,
       }
     ],
     yAxis: [
@@ -180,7 +181,7 @@ const ChartModule: FC<Props> = ({ dimension,mode,time,checkedKeys }) => {
   window.onresize = () => {
     myChart.resize();
   };
-}, [mode,time,checkedKeys])
+}, [xAixsData,mode,time,checkedKeys])
 
   return (
     <div id='main'></div>

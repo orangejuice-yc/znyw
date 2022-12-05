@@ -2,11 +2,17 @@ import { lazy,ReactNode,Suspense } from 'react';
 import { createHashRouter,useRoutes } from 'react-router-dom';
 import type {RouteObject} from 'react-router-dom'
 import Layout from './components/core/Layout'
+// import MonitorLayout from './components/core/module/MonitorLayout';
 const Home = lazy(() => import('./components/core/Home'))
 // import Index from './components/core/Index';
 const Reliability = lazy(() => import('./components/core/module/Reliability'))
 const ReliabilityTrends  = lazy(() => import('./components/core/module/ReliabilityTrends'))
-
+const Applicability = lazy(() => import('./components/core/module/Applicability'))
+const ApplicabilityTrends = lazy(() => import('./components/core/module/ApplicabilityTrends'))
+const Maintainability = lazy(() => import('./components/core/module/Maintainability'))
+const MaintainabilityTrends = lazy(() => import('./components/core/module/MaintainabilityTrends'))
+const Security = lazy(() => import('./components/core/module/Security'))
+const SecurityTrends = lazy(() => import('./components/core/module/SecurityTrends'))
 const lazyLoad = (children:ReactNode): ReactNode => {
   return <Suspense>{children}</Suspense>
 }
@@ -65,6 +71,7 @@ const router : RouteObject[] = [
     children:[
       {
         path: "/monitor/reliability",
+        // element:<MonitorLayout />,
         children:[
           {
             path: "/monitor/reliability/data",
@@ -75,9 +82,52 @@ const router : RouteObject[] = [
             element: lazyLoad(<ReliabilityTrends />)
           }
         ]
+      },
+      {
+        path: "/monitor/applicability",
+        // element:<MonitorLayout />,
+        children:[
+          {
+            path: "/monitor/applicability/data",
+            element: lazyLoad(<Applicability />)
+          }, 
+          {
+            path:"/monitor/applicability/trend",
+            element: lazyLoad(<ApplicabilityTrends />)
+          }
+        ]
+      }, 
+      {
+        path: "/monitor/maintainability",
+        // element:<MonitorLayout />,
+        children:[
+          {
+            path: "/monitor/maintainability/data",
+            element: lazyLoad(<Maintainability />)
+          }, 
+          {
+            path:"/monitor/maintainability/trend",
+            element: lazyLoad(<MaintainabilityTrends />)
+          }
+        ]
+      }, 
+      {
+        path: "/monitor/security",
+        // element:<MonitorLayout />,
+        children:[
+          {
+            path: "/monitor/security/data",
+            element: lazyLoad(<Security />)
+          }, 
+          {
+            path:"/monitor/security/trend",
+            element: lazyLoad(<SecurityTrends />)
+          }
+        ]
       }, 
     ]
-  }
+  },
+  
 ];
 
 

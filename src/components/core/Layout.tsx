@@ -7,9 +7,11 @@ import {Outlet} from 'react-router-dom'
 
 // import 'antd/dist/antd.less';
 // import { ConfigProvider } from 'antd';
+import 'antd/dist/antd.less';
 import './Layout.less';
 import axios from '../../api/axios'
 import {getToken} from '../../api/api'
+
 const { Content, Footer, Sider } = Layout;
 
 interface Props {

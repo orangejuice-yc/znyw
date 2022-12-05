@@ -23,7 +23,7 @@ const ChartModule: FC<Props> = ({ dimension,mode,time,checkedKeys }) => {
   useEffect(() => {
     type EChartsOption = echarts.EChartsOption;
 
-    var chartDom = document.getElementById('main1')!;
+    var chartDom = document.getElementById('main')!;
     var myChart = echarts.init(chartDom, 'dark');
     var option: EChartsOption;
     
@@ -44,7 +44,7 @@ const ChartModule: FC<Props> = ({ dimension,mode,time,checkedKeys }) => {
     option = {
       backgroundColor:'#111',
       title: {
-        top: 10,
+        top: 20,
         left: 'center',
         text: '设备可靠性每日热力图'
       },
@@ -55,13 +55,13 @@ const ChartModule: FC<Props> = ({ dimension,mode,time,checkedKeys }) => {
         type: 'piecewise',
         orient: 'horizontal',
         left: 'center',
-        top: 40
+        top: 60
       },
       calendar: {
-        top: 90,
+        top: 120,
         left: 30,
         right: 30,
-        cellSize: ['auto', 15],
+        cellSize: ['auto', 20],
         range: '2022',
         itemStyle: {
           borderWidth: 0.5
@@ -82,7 +82,7 @@ const ChartModule: FC<Props> = ({ dimension,mode,time,checkedKeys }) => {
 }, [mode,time,checkedKeys])
 
   return (
-    <div id='main1'></div>
+    <div id='main'></div>
   )
 }
 
