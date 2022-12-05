@@ -1,8 +1,26 @@
 import * as echarts from 'echarts';
-import React, { useEffect } from 'react';
+import React, { FC,useEffect } from 'react';
 import './module.less'
-const ChartModule = () => {
-useEffect(() => {
+
+interface Props {
+  dimension?: string | number,
+  mode?: string | number,
+  time?: string | number,
+  checkedKeys?:string[]
+}
+
+const ChartModule: FC<Props> = ({ dimension,mode,time,checkedKeys }) => {
+  const getData = () => {
+    let data = [];
+    for(let i=0;i<5;i++){
+      data.push((Math.random()*(90)+10).toFixed(2))
+    }
+    return data
+  }
+
+  console.log(dimension,mode,time,checkedKeys)
+
+  useEffect(() => {
   var app: any = {};
   type EChartsOption = echarts.EChartsOption;
   
@@ -105,6 +123,28 @@ useEffect(() => {
       name: {}
     }
   };
+
+  const getSeries = () => {
+    let series:any[] = [];
+    // console.log(11111,checkedKeys)
+    if(checkedKeys && checkedKeys.length){
+      for(let i = 0 ; i < checkedKeys.length ; i++){
+        let item = {
+          name: checkedKeys[i],
+          type: 'bar',
+          barGap: 0,
+          label: labelOption,
+          showBackground: true,
+          emphasis: {
+            focus: 'series'
+          },
+          data: getData()
+        }
+        series.push(item)
+     }
+    }
+    return series
+  }
   
   option = {
     backgroundColor:'#111',
@@ -115,21 +155,8 @@ useEffect(() => {
       },
     },
     legend: {
-      data: ['车站1', '车站2']
+      data: checkedKeys
     },
-    // toolbox: {
-    //   show: true,
-    //   orient: 'vertical',
-    //   left: 'left',
-    //   top: 'center',
-    //   feature: {
-    //     mark: { show: true },
-    //     dataView: { show: true, readOnly: false },
-    //     magicType: { show: true, type: ['line', 'bar', 'stack'] },
-    //     restore: { show: true },
-    //     saveAsImage: { show: true }
-    //   }
-    // },
     xAxis: [
       {
         type: 'category',
@@ -145,37 +172,15 @@ useEffect(() => {
         }
       }
     ],
-    series: [
-      {
-        name: '车站1',
-        type: 'bar',
-        barGap: 0,
-        label: labelOption,
-        showBackground: true,
-        emphasis: {
-          focus: 'series'
-        },
-        data: [90, 80, 70, 60, 50]
-      },
-      {
-        name: '车站2',
-        type: 'bar',
-        label: labelOption,
-        showBackground: true,
-        emphasis: {
-          focus: 'series'
-        },
-        data: [50, 60, 70, 80, 90]
-      }
-    ]
+    series: getSeries(),
   };
-  // 4. 调用表格数据
-  option && myChart.setOption(option);
   
-  window.onresize = function() {
+  // 4. 调用表格数据
+  option && myChart.setOption(option,true); //notMerge设置为true解决数据变化图表不刷新问题
+  window.onresize = () => {
     myChart.resize();
   };
-}, [])
+}, [mode,time,checkedKeys])
 
   return (
     <div id='main'></div>

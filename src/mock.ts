@@ -8,23 +8,23 @@ export const treeDataState: DataNode[] = [
       children: [
         {
           title: '车站1',
-          key: 'line1-state1'
+          key: '一号线-车站1'
         },
         {
           title: '车站2',
-          key: 'line1-state2'
+          key: '一号线-车站2'
         },
         {
           title: '车站3',
-          key: 'line1-state3'
+          key: '一号线-车站3'
         },
         {
           title: '车站4',
-          key: 'line1-state4'
+          key: '一号线-车站4'
         },
         {
           title: '车站5',
-          key: 'line1-state5'
+          key: '一号线-车站5'
         },
       ],
     },
@@ -35,23 +35,23 @@ export const treeDataState: DataNode[] = [
       children: [
         {
           title: '车站1',
-          key: 'line2-state1'
+          key: '二号线-车站1'
         },
         {
           title: '车站2',
-          key: 'line2-state2'
+          key: '二号线-车站2'
         },
         {
           title: '车站3',
-          key: 'line2-state3'
+          key: '二号线-车站3'
         },
         {
           title: '车站4',
-          key: 'line2-state4'
+          key: '二号线-车站4'
         },
         {
           title: '车站5',
-          key: 'line2-state5'
+          key: '二号线-车站5'
         },
       ],
     },
@@ -60,11 +60,11 @@ export const treeDataState: DataNode[] = [
 export const treeDataLine: DataNode[] = [
     {
       title: '一号线',
-      key: 'line1',
+      key: '一号线',
     },
     {
       title: '二号线',
-      key: 'line2',
+      key: '二号线',
     },
   ];
 // interface Price {
