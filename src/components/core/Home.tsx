@@ -4,7 +4,7 @@ import HomeChart from './module/HomeChart'
 const Home = () => {
   const state = useSelector(state => state)
   return (
-    <div>Home 342423423423{JSON.stringify(state)}<HomeChart></HomeChart></div>
+    <div><HomeChart></HomeChart></div>
     
   )
 }

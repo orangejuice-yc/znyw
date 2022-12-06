@@ -3,6 +3,8 @@ import React, { FC,useEffect } from 'react';
 import './module.less'
 
 interface Props {
+  major?: string,
+  type?:string,
   lineTitle?: string,
   dimension?: string | number,
   mode?: string | number,
@@ -10,7 +12,7 @@ interface Props {
   checkedKeys?:string[]
 }
 
-const ChartModule: FC<Props> = ({ lineTitle,dimension,mode,time,checkedKeys }) => {
+const ChartModule: FC<Props> = ({ major,type,lineTitle,dimension,mode,time,checkedKeys }) => {
   const mockData = () => {
     let data = [];
     for(let i=0;i<24;i++){
@@ -133,7 +135,7 @@ option && myChart.setOption(option);
   window.onresize = () => {
     myChart.resize();
   };
-}, [mode,time,checkedKeys])
+}, [major,type,mode,time,checkedKeys])
 
   return (
     <div id='main'></div>
