@@ -11,7 +11,7 @@ module.exports = {
       plugin: CracoAntDesignPlugin,
       options: {
         // customizeTheme: {
-        //   '@primary-color': '#52c41a',
+        //   '@primary-color': '#0a3448',
         //   '@link-color': '#1890ff', // 链接色
         //   '@success-color': '#52c41a',// 成功色
         //   '@warning-color': '#faad14', // 警告色

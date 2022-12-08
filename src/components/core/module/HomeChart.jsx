@@ -9,7 +9,7 @@ const ChartModule = () => {
   useEffect(() => {
 
      /* globals BMapSub */
-     var subwayCityName = '南京';
+     var subwayCityName = '哈尔滨';
      var list = BMapSub.SubwayCitiesList;
      console.log(list)
      var subwaycity = null;
@@ -22,7 +22,7 @@ const ChartModule = () => {
      console.log(subwaycity)
      // 获取北京地铁数据-初始化地铁图
      var subway = new BMapSub.Subway('container', subwaycity.citycode);
-     subway.setZoom(10);
+     subway.setZoom(0.8);
      var zoomControl  = new BMapSub.ZoomControl({
           offset: new BMapSub.Size(10,100)
       });
@@ -35,16 +35,16 @@ const ChartModule = () => {
         'https://api.map.baidu.com/images/subway/start-bak.png',
         new BMapSub.Size(50, 80)
     );
-    var marker = new BMapSub.Marker('南京南站', {icon: startIcon});
+    var marker = new BMapSub.Marker('博物馆', {icon: startIcon});
     subway.addMarker(marker);
-    subway.setCenter('南京南站');
+    subway.setCenter('博物馆');
     subway.setZoom(1);
 
     //信息窗口
     var infowindow = new BMapSub.InfoWindow(
       '<div id="bd-subwayInfo">'
       + '<div id="bd-subwayTitle">'
-      + '南京南站'
+      + '博物馆站'
       + '</div>'
       + '</div>'
       ); 

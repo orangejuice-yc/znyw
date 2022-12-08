@@ -167,8 +167,8 @@ const Navigation = () => {
   ];
 
   return (
-    <Sider collapsible collapsed={collapsed} onCollapse={value => setCollapsed(value)}>
-      <div className="logo" />
+    <Sider  collapsed={collapsed} onCollapse={value => setCollapsed(value)}>
+      {/* <div className="logo" /> */}
       <Menu 
         theme="dark"  
         mode="inline" 
