@@ -48,7 +48,7 @@ const ChartModule = () => {
       + '</div>'
       + '</div>'
       ); 
-      subway.openInfoWindow(infowindow, '南京南站');
+      subway.openInfoWindow(infowindow, '博物馆站');
 }, [])
 
   return (
