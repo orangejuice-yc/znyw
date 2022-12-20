@@ -1,59 +1,138 @@
-import * as echarts from 'echarts';
-import React, { FC,useEffect } from 'react';
-import axios from 'axios';
-import './module.less'
-// import {baseURL} from '../../../config/config.default'
+// React
+import React, { useEffect } from 'react';
+// import React, { FC,useEffect } from 'react';
+// import './App.css';
+import './map.css'
+import './bootstrap-slider.css'
+import hrbmtr from './hrbmtr';
 
 const ChartModule = () => {
 
+
+  
   useEffect(() => {
+// console.log(Slider)
+    let svgMap = new SvgMap('sw_svg',hrbmtr);//eslint-disable-line
+    svgMap.init();
+    svgMap.zoomBy(2);
 
-     /* globals BMapSub */
-     var subwayCityName = '哈尔滨';
-     var list = BMapSub.SubwayCitiesList;
-     console.log(list)
-     var subwaycity = null;
-     for (var i = 0; i < list.length; i++) {
-         if (list[i].name === subwayCityName) {
-             subwaycity = list[i];
-             break;
-         }
-     }
-     console.log(subwaycity)
-     // 获取北京地铁数据-初始化地铁图
-     var subway = new BMapSub.Subway('container', subwaycity.citycode);
-     subway.setZoom(0.8);
-     var zoomControl  = new BMapSub.ZoomControl({
-          offset: new BMapSub.Size(10,100)
-      });
-      subway.addEventListener('tap', function(e) {
-        alert('您点击了"' + e.station.name + '"站');
-    });
-      subway.addControl(zoomControl);
-    //站点标注
-    var startIcon = new BMapSub.Icon(
-        'https://api.map.baidu.com/images/subway/start-bak.png',
-        new BMapSub.Size(50, 80)
+    window.onresize = function () {
+      svgMap.reSize();
+      svgMap.reSizeAnimation();
+    }
+
+    //点击顶部线路button
+    document.getElementById('line0').addEventListener('click', function () { svgMap.showLine(0) });
+    document.getElementById('line1').addEventListener('click', function () { svgMap.showLine(1) });
+    document.getElementById('line2').addEventListener('click', function () { svgMap.showLine(2) });
+
+     //加载地图缩放滑条/
+     let map_slider = new Slider("#map-zoom-slider", { min: 0, max: 7, value: 4, reversed :true,}); //eslint-disable-line
+     map_slider.on('change',function(){
+         svgMap.zoomBy(map_slider.getValue());
+     });
+    //  document.getElementsByClassName("move_button").addEventListener('onmouseover', function (ev) { 
+    //   document.getElementById("move-controls").css("background-image","url(../../../images/"+this.id+".png)");
+    //   })
+    //  document.getElementsByClassName("move_button").onmouseover(function(){
+    //      document.getElementById("move-controls").css("background-image","url(../../../images/"+this.id+".png)");
+    //  });
+    //  document.getElementsByClassName("move_button").onmouseout(function(){
+    //   document.getElementById("move-controls").css("background-image","url(../../../images/mc_default.png)");
+    //  });
+    //  document.getElementsByClassName("move_button").onmousedown(function(){
+    //   document.getElementById("move-controls").css("background-image","url(../../../images/"+this.id+"_md.png)");
+    //  });
+    //  document.getElementsByClassName("move_button").onmouseup(function(){
+    //   document.getElementById("move-controls").css("background-image","url(../../../images/"+this.id+".png)");
+    //  });
+       //调整地图缩放滑条的位置
+       svgMap.reSize();
+
+    document.getElementById('move_left').addEventListener('click', function (ev) { svgMap.move(300, 0); });
+        document.getElementById('move_right').addEventListener('click', function (ev) { svgMap.move(-300, 0); });
+        document.getElementById('move_up').addEventListener('click', function (ev) { svgMap.move(0, 300); });
+        document.getElementById('move_down').addEventListener('click', function (ev) { svgMap.move(0, -300); });
+        //地图放大
+        document.getElementById('zoom-in').addEventListener('click', function (ev) {
+            map_slider.setValue(svgMap.getZoomLevel() + 1); 
+            svgMap.zoomBy(map_slider.getValue());
+        });
+        //地图缩小
+        document.getElementById('zoom-out').addEventListener('click', function (ev) {
+            map_slider.setValue(svgMap.getZoomLevel() - 1); 
+            svgMap.zoomBy(map_slider.getValue());
+        });
+  
+       //地图鼠标滚轮缩放
+        var addEvent = (function(){
+            if (window.addEventListener) {
+                return function(el, sType, fn, capture) {
+                    el.addEventListener(sType, fn, (capture));
+                };
+            } else if (window.attachEvent) {
+                return function(el, sType, fn, capture) {
+                    el.attachEvent("on" + sType, fn);
+                };
+            } else {
+                return function(){};
+            }
+        })(),
+        mousewheel = BrowserType()=="FireFox" ? "DOMMouseScroll" : "mousewheel"; //eslint-disable-line
+        addEvent(document.getElementById('sw_svg'), mousewheel, function(e) {
+            e=e || window.event; 
+            if(e.wheelDelta){//IE/Opera/Chrome 
+                var value=e.wheelDelta;
+            }else if(e.detail){//Firefox 
+                var value= 0-e.detail; 
+            }
+            if(value>0){
+                map_slider.setValue(svgMap.getZoomLevel() + 1);
+            }else{
+                map_slider.setValue(svgMap.getZoomLevel() - 1);
+            }
+            svgMap.zoomBy(map_slider.getValue(), e.clientX, e.clientY);
+        }, false);
+
+  }, [])
+
+  const clickLine = (line) => {
+    // svgMap.showLine(line);
+  }
+  const SvgMapView = () => {
+    return (
+      <svg
+      id='sw_svg'
+      textRendering="geometricPrecision"
+      // style={{backgroundColor:'rgb(10,53,72)'}}
+      style={{backgroundColor:'#000'}}
+    >
+      <g id="g1"/>
+    </svg>
     );
-    var marker = new BMapSub.Marker('博物馆', {icon: startIcon});
-    subway.addMarker(marker);
-    subway.setCenter('博物馆');
-    subway.setZoom(1);
-
-    //信息窗口
-    var infowindow = new BMapSub.InfoWindow(
-      '<div id="bd-subwayInfo">'
-      + '<div id="bd-subwayTitle">'
-      + '博物馆站'
-      + '</div>'
-      + '</div>'
-      ); 
-      subway.openInfoWindow(infowindow, '博物馆站');
-}, [])
+  };
 
   return (
-    <div id='container'></div>
+    <div id='container'>
+      <SvgMapView />
+      <div id="map-controls">
+          <div id="move-controls">
+              <div></div><div id="move_up" className="move_button"></div><div></div>
+              <div id="move_left" className="move_button"></div><div></div><div id="move_right" className="move_button"></div>
+              <div></div><div id="move_down" className="move_button"></div><div></div>
+          </div>
+          <div id="zoom-in">+</div>
+          <div id="zoom-out">-</div>
+          <div id="north">北</div>
+          <input id="map-zoom-slider" type="text" data-slider-min="0" data-slider-max="7" data-slider-step="1" data-slider-value="2" data-slider-orientation="vertical"/>
+      </div>
+      <div id="line-box">
+          <div className="line-name" id='line0' style={{backgroundColor:'#00b0f0'}}>1号线</div>
+          <div className="line-name" id='line1' style={{backgroundColor:'#f5ed4c'}}>2号线</div> 
+          <div className="line-name" id='line2' style={{backgroundColor:'#00b050'}}>3号线</div> 
+      </div>
+    </div>
   )
 }
 
-export default ChartModule
+export default ChartModule;

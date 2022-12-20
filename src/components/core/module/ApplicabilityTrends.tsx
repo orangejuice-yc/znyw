@@ -42,7 +42,6 @@ const ApplicabilityTrends = () => {
   };
 
   return (
-
     <MonitorLayout>
       {/* Reliability{JSON.stringify(state)} */}
       <MonitorSider>
@@ -57,7 +56,6 @@ const ApplicabilityTrends = () => {
           // onSelect={onSelect}
           onCheck={onCheck}
           checkedKeys={checkedKeys}
-          
           treeData={value == '线路' ? treeDataLine : value == '车站' ? treeDataState : []}
         />
       </MonitorSider>
@@ -71,9 +69,8 @@ const ApplicabilityTrends = () => {
           <ChartLine lineTitle={lineTitle} dimension={value} mode={mode} time={time} major={major} type={type} checkedKeys={checkedKeys}/>
         </MonitorCharts>
         <MonitorCompare>
-          <StatisticView dimension={value} mode={mode} time={time} checkedKeys={checkedKeys}/>
+          <StatisticView dimension={value} mode={mode} time={time} checkedKeys={checkedKeys} />
         </MonitorCompare>
-        
       </Layout> 
     </MonitorLayout>
   )
