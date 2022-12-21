@@ -167,9 +167,10 @@ const Navigation = () => {
   ];
 
   return (
-    <Sider  collapsed={collapsed} onCollapse={value => setCollapsed(value)}>
+    <Sider  collapsed={collapsed} onCollapse={value => setCollapsed(value)} style={{background:'#05222e'}}>
       {/* <div className="logo" /> */}
       <Menu 
+      style={{background:'#05222e'}}
         theme="dark"  
         mode="inline" 
         // defaultSelectedKeys={['0']}

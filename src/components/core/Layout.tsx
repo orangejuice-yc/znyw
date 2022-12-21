@@ -41,7 +41,7 @@ const LayoutModule= () => {
   return (
   <Layout style={{ minHeight: '100vh' }}>
     <Navigation />
-  <Layout className="site-layout">
+  <Layout className="site-layout" style={{ background: '#0a3548' }}>
     <Content style={{ margin: '0 16px' }}>
       <div className="site-layout-background" style={{ padding: 20 }}>
         {/* {children} */}

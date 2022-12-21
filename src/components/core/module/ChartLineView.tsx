@@ -1,6 +1,6 @@
 import * as echarts from 'echarts';
 import React, { FC,useEffect } from 'react';
-import './module.less'
+import '../css/module.less'
 
 interface Props {
   major?: string,
@@ -29,9 +29,9 @@ var myChart = echarts.init(chartDom);
 var option: EChartsOption;
 // prettier-ignore
 option = {
-  backgroundColor:'#111',
+  backgroundColor:'rgb(10,53,72)',
   title: {
-    top: 20,
+    top: 30,
     left: 'center',
     text: lineTitle,
     textStyle:{
@@ -68,7 +68,7 @@ option = {
   visualMap: {
     show: false,
     dimension: 0,
-    top: 70,
+    top: 80,
     pieces: [
       {
         lte: 6,

@@ -2,7 +2,7 @@ function SvgMap(svg_id, data ,width,height) {
     var _svgMap = this;
     this.id = svg_id;//svg元素ID
     this.svg = document.getElementById(svg_id); //SVG的DOM元素
-    this.width = width; //SVG窗体宽度
+    this.width = width ; //SVG窗体宽度
     this.height = height; //SVG窗体高度
     this.animationSteps = 30; //动画总帧数
     this.animationSpeed = 10; //动画速度，帧之间的间隔时间，单位：毫秒（间隔时间可能会受浏览器的执行速度影响而导致实际无法达到）
@@ -70,7 +70,7 @@ function SvgMap(svg_id, data ,width,height) {
         $('.svg-station').click(function (e) {
             //更新弹出框内容
             var stationId = this.getAttribute('id').replace("i", "s"); //获取当前ID，当是换乘点时，将ID首字母换成s
-            $('#station-title').html(_svgMap.stationArr[stationId].name);
+            $('#station-title').html('站点融合状态详情（' + _svgMap.stationArr[stationId].name + '）');
             $('#direction1').html(_svgMap.stationArr[stationId].direction1);
             $('#startTime1').html(_svgMap.stationArr[stationId].startTime1);
             $('#endTime1').html(_svgMap.stationArr[stationId].endTime1);
@@ -139,8 +139,10 @@ function SvgMap(svg_id, data ,width,height) {
                 //默认向上显示弹出框
                 $('#station-box-arrow').css('background', 'url(images/arrow_up.png) no-repeat');
             }
-            $('#station-box').css('left', box_x);
-            $('#station-box').css('top', box_y);
+            $('#station-box').css('left', _svgMap.width/2 - 250 );
+            $('#station-box').css('top', _svgMap.height/2 - 300);
+            // $('#station-box').css('left',box_x);
+            // $('#station-box').css('top', box_y);
             $('#station-box-arrow').css('left', arrow_x);
             $('#station-box-arrow').css('top', arrow_y);
             $('#station-box-arrow').css('display', '');
@@ -204,10 +206,15 @@ function SvgMap(svg_id, data ,width,height) {
             }
         });
         //当鼠标移出起点终点选择框时，隐藏选择框
-        $('#sw_svg').mouseover(function (e) {
+        // $('#sw_svg').mouseover(function (e) {
+        //     $('#station-box').css('display', 'none');
+        //     $('#station-box-arrow').css('display', 'none');
+        // });
+        
+        //点击关闭按钮关闭弹窗
+        $('#station-close').click(function(){
             $('#station-box').css('display', 'none');
-            $('#station-box-arrow').css('display', 'none');
-        });
+        })
         //清除规划路线，恢复遮罩
         this.svg.onmousedown = function () {
             if (_svgMap.onPathShow == true) {
@@ -892,7 +899,7 @@ function SvgMap(svg_id, data ,width,height) {
         $('#move-controls').css('left', _svgMap.width - 106);
         $('#zoom-in').css('left', _svgMap.width - 80);
         $('#zoom-out').css('left', _svgMap.width - 80);
-        $('#line-box').css('left', _svgMap.width - 420);
+        $('#line-box').css('left', _svgMap.width - 220);
         $('#north').css('left', _svgMap.width - 80);
         $('#north').css('top', _svgMap.height - 130);
         $('#transfer-box').css('max-height', _svgMap.height - 80);

@@ -26,6 +26,47 @@ text{
 {
     cursor:pointer;
 }
+@keyframes scaleDraw {
+    0% {
+        /* transform对元素进行旋转、缩放、移动或倾斜 */
+        /* scale缩放 */
+        /* scale(2) 分别把x y 放大两倍 */
+        /* transform: scale(1); */
+        stroke-width: 12;
+    }
+    50% {
+        /* transform对元素进行旋转、缩放、移动或倾斜 */
+        /* scale缩放 */
+        /* scale(2) 分别把x y 放大两倍 */
+        /* transform: scale(1); */
+        stroke-width: 50;
+    }
+    100% {
+        /* transform对元素进行旋转、缩放、移动或倾斜 */
+        /* scale缩放 */
+        /* scale(2) 分别把x y 放大两倍 */
+        /* transform: scale(1); */
+        stroke-width: 12;
+    }
+}
+/* .svg-station {
+    fill: red;
+    stroke: red;
+    stroke-width: 12;
+} */
+/* .svg-station {
+    fill: red;
+    stroke: red;
+    stroke-width: 12;
+    animation: scaleDraw 1s infinite;
+} */
+.svg-station-red {
+    fill: red;
+    stroke: red;
+    stroke-width: 12;
+    animation: scaleDraw 1s infinite;
+    cursor: pointer;
+}
 #map-controls .slider{
     position:absolute;
     height:140px;
@@ -57,12 +98,12 @@ text{
     border-radius:0px;
     width:20px;
     height:10px;
-    -webkit-box-shadow:2px 2px 8px #cccccc;
-    -moz-box-shadow:2px 2px 8px #cccccc;
-    -webkit-box-shadow:2px 2px 8px #cccccc;
-    -ms-box-shadow:2px 2px 8px #cccccc;
-    -o-box-shadow:2px 2px 8px #cccccc;    
-    box-shadow:2px 2px 8px #cccccc;
+    -webkit-box-shadow:2px 2px 8px rgb(106, 197, 236);
+    -moz-box-shadow:2px 2px 8px rgb(106, 197, 236);
+    -webkit-box-shadow:2px 2px 8px rgb(106, 197, 236);
+    -ms-box-shadow:2px 2px 8px rgb(106, 197, 236);
+    -o-box-shadow:2px 2px 8px rgb(106, 197, 236);    
+    box-shadow:2px 2px 8px rgb(106, 197, 236);
 }
 
 #zoom-in,#zoom-out{
@@ -73,8 +114,8 @@ text{
     height: 20px;
     text-align: center;
     line-height: 20px;
-    color: #000;
-    border: 1px solid rgb(204, 204, 204);   
+    color: #fff;
+    border: 1px solid rgb(62, 149, 186);   
     -webkit-border-radius:3px;
     -moz-border-radius:3px;
     -ms-border-radius:3px;
@@ -82,15 +123,15 @@ text{
     border-radius:3px;
     font-size: 16px;
     font-weight: bold;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(62, 149, 186);
     cursor:pointer;
     z-index:100; 
-    -webkit-box-shadow:2px 2px 8px #cccccc;
-    -moz-box-shadow:2px 2px 8px #cccccc;
-    -webkit-box-shadow:2px 2px 8px #cccccc;
-    -ms-box-shadow:2px 2px 8px #cccccc;
-    -o-box-shadow:2px 2px 8px #cccccc;    
-    box-shadow:2px 2px 8px #cccccc;
+    -webkit-box-shadow:2px 2px 8px rgb(106, 197, 236);
+    -moz-box-shadow:2px 2px 8px rgb(106, 197, 236);
+    -webkit-box-shadow:2px 2px 8px rgb(106, 197, 236);
+    -ms-box-shadow:2px 2px 8px rgb(106, 197, 236);
+    -o-box-shadow:2px 2px 8px rgb(106, 197, 236);    
+    box-shadow:2px 2px 8px rgb(106, 197, 236);
 }
 #zoom-out
 {
@@ -113,15 +154,15 @@ text{
     top: 70px;
     width:72px;
     height:72px;
-    border:1px solid #CCC;
+    border:1px solid rgb(62, 149, 186);
     background-image:url(../../../images/mc_default.png);
-    background-color: #FFF;
-    -webkit-box-shadow:2px 2px 8px #cccccc;
-    -moz-box-shadow:2px 2px 8px #cccccc;
-    -webkit-box-shadow:2px 2px 8px #cccccc;
-    -ms-box-shadow:2px 2px 8px #cccccc;
-    -o-box-shadow:2px 2px 8px #cccccc;    
-    box-shadow:2px 2px 8px #cccccc;
+    background-color: rgb(62, 149, 186);
+    -webkit-box-shadow:2px 2px 8px rgb(106, 197, 236);
+    -moz-box-shadow:2px 2px 8px rgb(106, 197, 236);
+    -webkit-box-shadow:2px 2px 8px rgb(106, 197, 236);
+    -ms-box-shadow:2px 2px 8px rgb(106, 197, 236);
+    -o-box-shadow:2px 2px 8px rgb(106, 197, 236);    
+    box-shadow:2px 2px 8px rgb(106, 197, 236);
     -webkit-border-radius:50%;
     -moz-border-radius:50%;
     -ms-border-radius:50%;
@@ -141,12 +182,13 @@ text{
 }
 #station-box
 {
-    position: absolute;
-    top:0px;
-    left:0px;
-    width:248px;
+    position: fixed;
+    top:50%;
+    left:50%;
+    width:800px;
+    height:600px;
     padding:30px;
-    height:194px;
+    /* height:194px; */
     overflow:hidden;
     z-index:600;
 }
@@ -162,11 +204,12 @@ text{
 }
 #station
 {
-    width:240px;
-    height:186px;
+    /* width:800px;
+    height:600px; */
+    position:relative;
     padding:3px;
-    background-color:#FFFFFF;
-    border:1px solid rgba(0,0,0,0.3);
+    background-color:rgb(17,78,116);
+    border:1px solid rgb(24,152,180);
     box-shadow:0px 3px 7px rgba(0,0,0,0.3);    
     -webkit-border-radius:6px;
     -moz-border-radius:6px;
@@ -176,13 +219,21 @@ text{
 }
 #station-title
 {
-    padding:10px 15px;
-    height:25px;
-    border-bottom:1px solid #CCC;
-    font-size:20px;
+    padding:0px 15px;
+    margin-bottom:15px;
+    height:50px;
+    line-height: 50px;
+    border-bottom:1px solid rgb(24,152,180);
+    font-size:16px;
     letter-spacing:5px;
     font-weight:bold;
-    color:#fff;
+    color:rgb(62, 194, 224);
+}
+#station-close{
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
 }
 #station-content
 {
@@ -192,6 +243,13 @@ text{
     overflow:hidden;
     border-bottom:1px solid #CCC;
     font-size:14px;
+}
+
+#station-content .ant-table table {
+    background:rgb(9,35,62)
+}
+#station-content .ant-table-thead > tr > th{
+    background:rgb(9,35,62)
 }
 .station-content-t1,.station-content-t2,.station-content-t3
 {
@@ -223,8 +281,8 @@ text{
     height:40px;
     width:100%;
     padding:10px 0px 6px 0px;
-    border-top:1px solid #FFF;
-    background-color:#F5F5F5;
+    border-top:1px solid rgb(106, 193, 231);
+    background-color:rgb(106, 193, 231);
 }
 .button-start,.button-end
 {
@@ -277,19 +335,20 @@ text{
 #line-box
 {
     position:absolute;
-    left:100px;
+    /* left:50px; */
+    right:10px !important;
     top:15px;
-    width:400px;
+    width:222px;
     height:40px;
-    border:1px solid #CCC;
-    background-color:#FFF;
+    border:1px solid rgb(106, 193, 231);
+    background-color:rgb(106, 193, 231);
     filter:alpha(Opacity=90);-moz-opacity:0.9;opacity: 0.9;
-    -webkit-box-shadow:2px 2px 8px #cccccc;
-    -moz-box-shadow:2px 2px 8px #cccccc;
-    -webkit-box-shadow:2px 2px 8px #cccccc;
-    -ms-box-shadow:2px 2px 8px #cccccc;
-    -o-box-shadow:2px 2px 8px #cccccc;
-    box-shadow:2px 2px 8px #cccccc;
+    -webkit-box-shadow:2px 2px 8px rgb(155, 215, 241);
+    -moz-box-shadow:2px 2px 8px rgb(155, 215, 241);
+    -webkit-box-shadow:2px 2px 8px rgb(155, 215, 241);
+    -ms-box-shadow:2px 2px 8px rgb(155, 215, 241);
+    -o-box-shadow:2px 2px 8px rgb(155, 215, 241);
+    box-shadow:2px 2px 8px rgb(155, 215, 241);
     -webkit-border-radius:5px;
     -moz-border-radius:5px;
     -ms-border-radius:5px;

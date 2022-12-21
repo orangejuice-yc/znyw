@@ -1,6 +1,6 @@
 import * as echarts from 'echarts';
 import React, { FC,useEffect } from 'react';
-import './module.less'
+import '../css/module.less'
 
 interface Props {
   xAixsData?:string[],
@@ -148,7 +148,7 @@ const ChartModule: FC<Props> = ({ xAixsData,dimension,mode,time,checkedKeys }) =
   }
   
   option = {
-    backgroundColor:'#111',
+    backgroundColor:'rgb(10,53,72)',
     tooltip: {
       trigger: 'axis',
       axisPointer: {

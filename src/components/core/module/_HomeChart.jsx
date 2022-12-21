@@ -1,7 +1,7 @@
 import * as echarts from 'echarts';
 import React, { FC,useEffect } from 'react';
 import axios from 'axios';
-import './module.less'
+import '../css/module.less'
 // import {baseURL} from '../../../config/config.default'
 
 const ChartModule = () => {
