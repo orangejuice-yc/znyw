@@ -1,6 +1,6 @@
 import * as echarts from 'echarts';
 import React, { FC,useEffect } from 'react';
-import './module.less'
+import '../css/module.less'
 
 interface Props {
   dimension?: string | number,
@@ -32,9 +32,9 @@ const ChartModule: FC<Props> = ({ dimension,mode,time,checkedKeys }) => {
     }
     
     option = {
-      backgroundColor:'#111',
+      backgroundColor:'rgb(10,53,72)',
       title: {
-        top: 20,
+        top: 30,
         left: 'center',
         text: '设备可靠性每日热力图'
       },
@@ -45,10 +45,10 @@ const ChartModule: FC<Props> = ({ dimension,mode,time,checkedKeys }) => {
         type: 'piecewise',
         orient: 'horizontal',
         left: 'center',
-        top: 60
+        top: 100
       },
       calendar: {
-        top: 120,
+        top: 180,
         left: 30,
         right: 30,
         cellSize: ['auto', 20],

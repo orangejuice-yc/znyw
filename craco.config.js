@@ -1,23 +1,17 @@
 const CracoAntDesignPlugin = require('craco-antd');
 const { getThemeVariables } = require('antd/dist/theme');
-const path = require('path')
+// const path = require('path')
 
 // const CracoLessPlugin = require('craco-less');
 
 
 module.exports = {
-  
-  webpack: {
-    alias: {
-      '@': path.join(__dirname, '/')
-    }
-  },
   plugins: [
     {
       plugin: CracoAntDesignPlugin,
       options: {
         // customizeTheme: {
-        //   '@primary-color': '#52c41a',
+        //   '@primary-color': '#0a3448',
         //   '@link-color': '#1890ff', // 链接色
         //   '@success-color': '#52c41a',// 成功色
         //   '@warning-color': '#faad14', // 警告色

@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 // import MonitorCharts from './MonitorCharts';
 // import MonitorSider from './MonitorSider';
 // import MonitorTable from './MonitorTable';
-import './module.less'
+import '../css/module.less'
 // const { Content, Sider } = Layout;
 
 interface Props {

@@ -109,8 +109,9 @@ export const treeDataLine: DataNode[] = [
 interface DataType {
     key: React.Key;
     name: string;
-    age: number;
     address: string;
+    repairtime: string;
+    type:string;
   }
   
   export const columns: ColumnsType<DataType> = [
@@ -122,37 +123,37 @@ interface DataType {
       fixed: 'left',
     },
     {
-      title: 'Column 1',
+      title: '设备所在区域',
       dataIndex: 'address',
       key: '1',
       width: 150,
     },
     {
-      title: 'Column 2',
-      dataIndex: 'address',
+      title: '设备类型',
+      dataIndex: 'type',
       key: '2',
       width: 150,
     },
     {
-      title: 'Column 3',
-      dataIndex: 'address',
+      title: '平均维修时间',
+      dataIndex: 'repairtime',
       key: '3',
       width: 150,
     },
     {
-      title: 'Column 4',
+      title: '维修及时率',
       dataIndex: 'address',
       key: '4',
       width: 150,
     },
     {
-      title: 'Column 5',
+      title: '返修率',
       dataIndex: 'address',
       key: '5',
       width: 150,
     },
     {
-      title: 'Column 6',
+      title: '维修到位率',
       dataIndex: 'address',
       key: '6',
       width: 150,
@@ -177,9 +178,10 @@ interface DataType {
   for (let i = 0; i < 100; i++) {
     data.push({
       key: i,
+      type:`类型 ${i + 1}`,
       name: `设备 ${i + 1}`,
-      age: 32,
-      address: `London Park no. ${i}`,
+      repairtime: `2022.12.${i + 1}`,
+      address: `区域 ${i}`,
     });
   }
 

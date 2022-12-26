@@ -1,8 +1,10 @@
 import * as echarts from 'echarts';
 import React, { FC,useEffect } from 'react';
-import './module.less'
+import '../css/module.less'
 
 interface Props {
+  major?: string,
+  type?:string,
   lineTitle?: string,
   dimension?: string | number,
   mode?: string | number,
@@ -10,7 +12,7 @@ interface Props {
   checkedKeys?:string[]
 }
 
-const ChartModule: FC<Props> = ({ lineTitle,dimension,mode,time,checkedKeys }) => {
+const ChartModule: FC<Props> = ({ major,type,lineTitle,dimension,mode,time,checkedKeys }) => {
   const mockData = () => {
     let data = [];
     for(let i=0;i<24;i++){
@@ -27,9 +29,9 @@ var myChart = echarts.init(chartDom);
 var option: EChartsOption;
 // prettier-ignore
 option = {
-  backgroundColor:'#111',
+  backgroundColor:'rgb(10,53,72)',
   title: {
-    top: 20,
+    top: 30,
     left: 'center',
     text: lineTitle,
     textStyle:{
@@ -66,7 +68,7 @@ option = {
   visualMap: {
     show: false,
     dimension: 0,
-    top: 70,
+    top: 80,
     pieces: [
       {
         lte: 6,
@@ -133,7 +135,7 @@ option && myChart.setOption(option);
   window.onresize = () => {
     myChart.resize();
   };
-}, [mode,time,checkedKeys])
+}, [major,type,mode,time,checkedKeys])
 
   return (
     <div id='main'></div>

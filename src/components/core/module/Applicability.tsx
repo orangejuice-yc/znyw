@@ -1,6 +1,6 @@
 import { Layout,Segmented,Tree,Table } from 'antd';
 import React, { FC,useState } from 'react';
-import type { TreeProps } from 'antd/es/tree';
+// import type { MenuProps } from 'antd';
 import { useSelector } from 'react-redux'
 import MonitorLayout from './MonitorLayout'
 import MonitorCharts from './MonitorCharts';
@@ -8,7 +8,6 @@ import MonitorSider from './MonitorSider';
 import MonitorTable from './MonitorTable';
 import ChartBar from './ChartBarView'
 import {columns,data,treeDataLine,treeDataState} from '../../../mock'
-
 
 const Applicability = () => {
   const state = useSelector(state => state)
@@ -22,6 +21,7 @@ const Applicability = () => {
     console.log('onCheck', checkedKeysValue);
     setCheckedKeys(checkedKeysValue);
   };
+
   return (
 
     <MonitorLayout>
@@ -46,7 +46,7 @@ const Applicability = () => {
         <MonitorCharts>
           {/* <Segmented block options={['责任事故次数', '信号系统故障率', '车辆系统故障率']} value={mode} onChange={setMode}/> */}
           <Segmented size="small" options={['本年', '本月', '本周']} value={time} onChange={setTime} style={{textAlign:'right',marginTop:'10px'}}/>
-          <ChartBar xAixsData={xAixsData} dimension={value} mode={mode} checkedKeys={checkedKeys}/>
+          <ChartBar xAixsData={xAixsData} dimension={value} mode={mode} time={time} checkedKeys={checkedKeys}/>
         </MonitorCharts>
         <MonitorTable>
           <Table columns={columns} dataSource={data} scroll={{ x: 1500, y: 300 }} />
