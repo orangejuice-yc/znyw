@@ -143,9 +143,9 @@ const Navigation = () => {
         getItem(<Link to="/monitor/security/trend">线网设备安全性平均指标趋势</Link>, '/monitor/security/trend'),
       ]),
     ]),
-    getItem('告警中心', '2', <FileOutlined />,[
-      getItem('告警统计', '2-1'), 
-      getItem('实时告警', '2-2'),
+    getItem('告警中心', '/alarm', <FileOutlined />,[
+      getItem(<Link to="/alarm/statistic">告警统计</Link>, '/alarm/statistic'), 
+      getItem(<Link to="/alarm/actualtime">实时告警</Link>, '/alarm/actualtime'),
       getItem('历史告警', '2-3'),
     ]),
     getItem('分析中心', '3', <FileOutlined />,[
