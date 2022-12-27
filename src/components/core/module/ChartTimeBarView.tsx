@@ -7,19 +7,23 @@ interface Props {
   dimension?: string | number,
   mode?: string | number,
   time?: string | number,
+  type?: string | number,
   checkedKeys?:string[]
 }
 
-const ChartModule: FC<Props> = ({ xAixsData,dimension,mode,time,checkedKeys }) => {
+const ChartModule: FC<Props> = ({ xAixsData,type,dimension,mode,time,checkedKeys }) => {
   const mockData = () => {
+    
+    console.log(xAixsData,xAixsData?.length);
+    const _length:number = xAixsData?.length || 0;
     let data = [];
-    for(let i=0;i<5;i++){
+    for(let i=0;i<_length;i++){
       data.push((Math.random()*(90)+10).toFixed(2))
     }
     return data
   }
 
-  console.log(dimension,mode,time,checkedKeys)
+  console.log(dimension,type,mode,time,checkedKeys)
 
   useEffect(() => {
   var app: any = {};
@@ -183,7 +187,7 @@ const ChartModule: FC<Props> = ({ xAixsData,dimension,mode,time,checkedKeys }) =
       {
         type: 'category',
         // prettier-ignore
-        data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+        data: xAixsData
       }
     ],
     yAxis: [
@@ -195,9 +199,7 @@ const ChartModule: FC<Props> = ({ xAixsData,dimension,mode,time,checkedKeys }) =
       {
         name: '年度告警数量',
         type: 'bar',
-        data: [
-          20, 49, 70, 23, 25, 76, 135, 162, 32, 20, 64, 33
-        ],
+        data: mockData(),
         markPoint: {
           data: [
             { type: 'max', name: 'Max' },
@@ -215,7 +217,7 @@ const ChartModule: FC<Props> = ({ xAixsData,dimension,mode,time,checkedKeys }) =
   window.onresize = () => {
     myChart.resize();
   };
-}, [xAixsData,mode,time,checkedKeys])
+}, [xAixsData,type,mode,time,checkedKeys])
 
   return (
     <div id='main1'></div>

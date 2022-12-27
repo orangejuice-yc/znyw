@@ -11,17 +11,25 @@ interface Props {
 }
 
 const ChartModule: FC<Props> = ({ xAixsData,dimension,mode,chartType,checkedKeys }) => {
+  let data:any = [];
   const mockData = () => {
-    let data = [];
-    for(let i=0;i<5;i++){
-      data.push((Math.random()*(90)+10).toFixed(2))
+    
+    const _length:number = checkedKeys?.length || 0;
+    for(let i=0;i<_length;i++){
+      data.push(
+        { value: (Math.random()*(90)+10).toFixed(2), 
+          name: checkedKeys && checkedKeys[i]
+        }
+      )
     }
-    return data
+    console.log(data)
+    // return data
   }
 
   console.log(dimension,mode,chartType,checkedKeys)
 
   useEffect(() => {
+    console.log(mockData())
   var app: any = {};
   type EChartsOption = echarts.EChartsOption;
   
@@ -152,15 +160,15 @@ const ChartModule: FC<Props> = ({ xAixsData,dimension,mode,chartType,checkedKeys
     legend: {
       top: 'bottom'
     },
-    toolbox: {
-      show: true,
-      feature: {
-        mark: { show: true },
-        dataView: { show: true, readOnly: false },
-        // restore: { show: true },
-        // saveAsImage: { show: true }
-      }
-    },
+    // toolbox: {
+    //   show: true,
+    //   feature: {
+    //     mark: { show: true },
+    //     dataView: { show: true, readOnly: false },
+    //     // restore: { show: true },
+    //     // saveAsImage: { show: true }
+    //   }
+    // },
     series: [
       {
         name: 'Nightingale Chart',
@@ -176,22 +184,13 @@ const ChartModule: FC<Props> = ({ xAixsData,dimension,mode,chartType,checkedKeys
           '#58d9f9',
           '#05c091',
         ],
-        radius: [50, 120],
+        radius: [10, 100],
         center: ['50%', '50%'],
         roseType: 'area',
         itemStyle: {
           borderRadius: 8
         },
-        data: [
-          { value: 40, name: 'rose 1' },
-          { value: 38, name: 'rose 2' },
-          { value: 32, name: 'rose 3' },
-          { value: 30, name: 'rose 4' },
-          { value: 28, name: 'rose 5' },
-          { value: 26, name: 'rose 6' },
-          { value: 22, name: 'rose 7' },
-          { value: 18, name: 'rose 8' }
-        ]
+        data: data
       }
     ]
   };
