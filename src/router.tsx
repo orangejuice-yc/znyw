@@ -14,6 +14,7 @@ const MaintainabilityTrends = lazy(() => import('./components/core/module/Mainta
 const Security = lazy(() => import('./components/core/module/Security'))
 const SecurityTrends = lazy(() => import('./components/core/module/SecurityTrends'))
 const AlarmStatistic = lazy(() => import('./components/core/module/AlarmStatistic'))
+const RealTimeAlarm = lazy(() => import('./components/core/module/RealTimeAlarm'))
 const lazyLoad = (children:ReactNode): ReactNode => {
   return <Suspense>{children}</Suspense>
 }
@@ -135,6 +136,10 @@ const router : RouteObject[] = [
       {
         path: "/alarm/statistic",
         element:lazyLoad(<AlarmStatistic />),
+      },
+      {
+        path: "/alarm/actualtime",
+        element:lazyLoad(<RealTimeAlarm />),
       },
     ]
   }
